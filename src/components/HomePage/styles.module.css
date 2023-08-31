@@ -1,0 +1,58 @@
+.active::before,
+.hoverActive:hover::before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  width: 100%;
+  height: 15px;
+  background-color: var(--yellow);
+  border-radius: 0 0 4px 4px;
+  animation: slideInFromTop 0.3s ease 0s;
+}
+
+.hoverActive::before {
+  content: "";
+  position: absolute;
+  top: -45px;
+  width: 100%;
+  height: 15px;
+  background-color: var(--yellow);
+  border-radius: 0 0 4px 4px;
+  animation: slideOutToTop 0.3s ease 0s;
+}
+.active::before {
+  top: -30px;
+}
+
+@keyframes slideInFromTop {
+  from {
+    top: -45px;
+  }
+  to {
+    top: -30px;
+  }
+}
+@keyframes slideOutToTop {
+  from {
+    top: -30px;
+  }
+  to {
+    top: -45px;
+  }
+}
+
+.introduction {
+  /* height: 100vh; */
+  /* font-size: 9.375rem; */
+  font-weight: 800;
+}
+.introduction h1 {
+  font-size: 8.375rem;
+  font-weight: 800;
+  line-height: 1;
+  text-shadow: 8px 8px #fff, 20px 20px #222;
+  -webkit-text-fill-color: transparent;
+}
+.introduction h1 span {
+  text-shadow: 8px 8px var(--yellow), 20px 20px #222;
+}

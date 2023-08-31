@@ -1,0 +1,11 @@
+.list::before {
+  content: "";
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--yellow);
+}
+.list {
+  display: flex;
+}
