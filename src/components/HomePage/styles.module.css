@@ -41,11 +41,6 @@
   }
 }
 
-.introduction {
-  /* height: 100vh; */
-  /* font-size: 9.375rem; */
-  font-weight: 800;
-}
 .introduction h1 {
   font-size: 8.375rem;
   font-weight: 800;
@@ -53,6 +48,28 @@
   text-shadow: 8px 8px #fff, 20px 20px #222;
   -webkit-text-fill-color: transparent;
 }
-.introduction h1 span {
+.introduction h1 span,
+.introduction .name {
   text-shadow: 8px 8px var(--yellow), 20px 20px #222;
+}
+
+.navigation {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  background-color: black;
+  animation: showHeader 1s ease 0s;
+}
+
+@keyframes showHeader {
+  from {
+    top: -88px;
+  }
+  to {
+    top: 0px;
+  }
+}
+.blink {
+  opacity: 0;
 }
