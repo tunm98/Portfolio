@@ -1,56 +1,90 @@
-"use client"
-import { FC, useState, useEffect } from "react"
-import clsx from "clsx"
-import styles from "./styles.module.css"
+"use client";
+import { FC, useState, useEffect } from "react";
+import clsx from "clsx";
+import styles from "./styles.module.css";
 interface HeaderProps {}
 
 const Header: FC<HeaderProps> = ({}) => {
-  const [activeTab, setActiveTab] = useState<number>(0)
-  const [isSticky, setSticky] = useState<boolean>(false)
-  const fullText = "Otis Nguyen"
-  const [text, setText] = useState<string>("")
-  const [index, setIndex] = useState<number>(0)
-  const [deleting, setDeleting] = useState<boolean>(false)
-  // const [cursorVisible, setCursorVisible] = useState(true)
+  const [activeTab, setActiveTab] = useState<number>(0);
+  const [isSticky, setSticky] = useState<boolean>(false);
+  const englishName = "Otis Nguyen";
+  const vietName = "Tu Nguyen";
+  const [text, setText] = useState<string>("");
+  const [index, setIndex] = useState<number>(0);
+  const [deleting, setDeleting] = useState<boolean>(false);
+  const [changeName, setChangeName] = useState<boolean>(false);
 
   const handleScroll = () => {
     if (window.scrollY > 50) {
-      setSticky(true)
+      setSticky(true);
     } else {
-      setSticky(false)
+      setSticky(false);
     }
-  }
+  };
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll);
     return () => {
-      window.removeEventListener("scroll", handleScroll)
-    }
-  }, [])
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
 
   useEffect(() => {
-    const updateText = () => {
-      setText(
-        deleting ? fullText.slice(0, index - 1) : fullText.slice(0, index + 1)
-      )
-      setIndex((prevIndex) => (deleting ? prevIndex - 1 : prevIndex + 1))
-    }
-
-    let timeoutId: NodeJS.Timeout
-
-    if (!deleting && index < fullText.length) {
-      timeoutId = setTimeout(updateText, 200) // Typing speed
-    } else if (deleting && index > 0) {
-      timeoutId = setTimeout(updateText, 50) // Deleting speed
-    } else if (index === fullText.length) {
-      timeoutId = setTimeout(() => setDeleting(true), 500) // Pause before start deleting
-    } else if (index === 0) {
-      timeoutId = setTimeout(() => setDeleting(false), 500) // Pause before start typing again
+    let timeoutId: NodeJS.Timeout;
+    let handleUpdateText;
+    switch (changeName) {
+      case false:
+        handleUpdateText = () => {
+          setText(
+            deleting
+              ? englishName.slice(0, index - 1)
+              : englishName.slice(0, index + 1)
+          );
+          setIndex((prevIndex) => (deleting ? prevIndex - 1 : prevIndex + 1));
+        };
+        if (!deleting && index < englishName.length) {
+          timeoutId = setTimeout(handleUpdateText, 200); // Typing speed
+        } else if (deleting && index > 0) {
+          timeoutId = setTimeout(handleUpdateText, 50); // Deleting speed
+        } else if (index === englishName.length) {
+          timeoutId = setTimeout(() => {
+            setDeleting(true);
+          }, 500); // Pause before start deleting
+        } else if (index === 0) {
+          timeoutId = setTimeout(() => {
+            setDeleting(false);
+            setChangeName(!changeName);
+          }, 500); // Pause before start typing again
+        }
+        break;
+      case true:
+        handleUpdateText = () => {
+          setText(
+            deleting
+              ? vietName.slice(0, index - 1)
+              : vietName.slice(0, index + 1)
+          );
+          setIndex((prevIndex) => (deleting ? prevIndex - 1 : prevIndex + 1));
+        };
+        if (!deleting && index < englishName.length) {
+          timeoutId = setTimeout(handleUpdateText, 200); // Typing speed
+        } else if (deleting && index > 0) {
+          timeoutId = setTimeout(handleUpdateText, 50); // Deleting speed
+        } else if (index === englishName.length) {
+          timeoutId = setTimeout(() => {
+            setDeleting(true);
+          }, 500); // Pause before start deleting
+        } else if (index === 0) {
+          timeoutId = setTimeout(() => {
+            setDeleting(false);
+            setChangeName(!changeName);
+          }, 500); // Pause before start typing again
+        }
     }
 
     // Cleanup
-    return () => clearTimeout(timeoutId)
-  }, [index, deleting])
+    return () => clearTimeout(timeoutId);
+  }, [index, deleting, changeName]);
 
   // useEffect(() => {
   //   const cursorInterval = setInterval(() => {
@@ -86,7 +120,7 @@ const Header: FC<HeaderProps> = ({}) => {
           </nav>
           <p>
             Email:{" "}
-            <span className="text-yellow ml-1"> tunm.dev98@gmail.com</span>
+            <span className="text-yellow ml-1">tunm.dev98@gmail.com</span>
           </p>
         </div>
       </div>
@@ -117,10 +151,10 @@ const Header: FC<HeaderProps> = ({}) => {
         </h1>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
 
 const tabs = [
   {
@@ -143,4 +177,4 @@ const tabs = [
     name: "Blog",
     link: "/blog",
   },
-]
+];

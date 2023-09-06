@@ -19,3 +19,41 @@ body {
   color: white;
   font-family: var(--livvic);
 }
+
+/* html *,
+body * {
+  cursor: none;
+} */
+
+#cursor-dot,
+#cursor-dot-outline {
+  z-index: 999;
+  pointer-events: none;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: opacity 0.15s ease-in-out, transform 0.15s ease-in-out;
+}
+
+#cursor-dot {
+  width: 10px;
+  height: 10px;
+  background-color: var(--yellow);
+}
+
+#cursor-dot-outline {
+  background-color: rgba(228, 223, 223, 0.493);
+}
+#cursor .dot1 {
+  width: 20px;
+  height: 20px;
+}
+#cursor .dot2 {
+  width: 15px;
+  height: 15px;
+  top: 45%;
+  left: 45%;
+}
