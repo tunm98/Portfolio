@@ -25,101 +25,38 @@ import Swagger from "@/assets/png/swagger.png";
 import Vscode from "@/assets/png/vscode.png";
 
 const profile = {
-  name: "profile",
-  title: "Profile",
-  type: "document",
+  name: "skills",
+  title: "Skills",
+  type: "document", // Use 'document' if this is a top-level content type
+  description: "Add skills with icons",
   fields: [
-    defineField({
-      name: "fullName",
-      title: "Full Name",
-      type: "string",
-      validation: (rule) => rule.required(),
-    }),
-    defineField({
-      name: "headline",
-      title: "Headline",
-      type: "string",
-      description: "In one short sentence, what do you do?",
-      validation: (Rule) => Rule.required().min(40).max(50),
-    }),
-    {
-      name: "profileImage",
-      title: "Profile Image",
-      type: "image",
-      description: "Upload a profile picture",
-      options: { hotspot: true },
-      fields: [
-        {
-          name: "alt",
-          title: "Alt",
-          type: "string",
-        },
-      ],
-    },
-    {
-      name: "shortBio",
-      title: "Short Bio",
-      type: "text",
-      rows: 4,
-    },
-    {
-      name: "email",
-      title: "Email Address",
-      type: "string",
-    },
-    {
-      name: "location",
-      title: "Location",
-      type: "string",
-    },
-    {
-      name: "fullBio",
-      title: "Full Bio",
-      type: "array",
-      of: [{ type: "block" }],
-    },
-    {
-      name: "resumeURL",
-      title: "Upload Resume",
-      type: "file",
-    },
-    {
-      name: "socialLinks",
-      title: "Social Links",
-      type: "object",
-      description: "Add your social media links:",
-      fields: [
-        {
-          name: "github",
-          title: "Github URL",
-          type: "url",
-          initialValue: "https://github.com/",
-        },
-        {
-          name: "linkedin",
-          title: "Linkedin URL",
-          type: "url",
-          initialValue: "https://linkedin.com/in/",
-        },
-        {
-          name: "twitter",
-          title: "Twitter URL",
-          type: "url",
-          initialValue: "https://twitter.com/",
-        },
-        {
-          name: "twitch",
-          title: "Twitch URL",
-          type: "url",
-          initialValue: "https://twitch.com/",
-        },
-      ],
-      options: {
-        collapsed: false,
-        collapsible: true,
-        columns: 2,
-      },
-    },
+    // {
+    //   name: "skillArray",
+    //   title: "Skills List",
+    //   type: "array",
+    //   of: [
+    //     {
+    //       type: "object",
+    //       name: "skill",
+    //       title: "Skill",
+    //       fields: [
+    //         {
+    //           name: "skillName",
+    //           title: "Skill Name",
+    //           type: "string",
+    //           description: "Name of the skill (e.g., HTML, CSS, JS)",
+    //         },
+    //         {
+    //           name: "skillIcon",
+    //           title: "Skill Icon",
+    //           type: "image",
+    //           description: "Upload your icon",
+    //           options: { hotspot: true },
+    //         },
+    //       ],
+    //     },
+    //   ],
+    // },
     {
       name: "skills",
       title: "Skills",
@@ -129,4 +66,46 @@ const profile = {
     },
   ],
 };
+
+export const post = {
+  name: "post",
+  title: "Blog Post",
+  type: "document",
+  fields: [
+    {
+      name: "title",
+      title: "Title",
+      type: "string",
+    },
+    {
+      name: "slug",
+      title: "Slug",
+      type: "slug",
+      options: {
+        source: "title",
+        maxLength: 96,
+      },
+    },
+    {
+      name: "author",
+      title: "Author",
+      type: "reference",
+      to: { type: "author" },
+    },
+    {
+      name: "body",
+      title: "Body",
+      type: "blockContent",
+    },
+    {
+      name: "mainImage",
+      title: "Main image",
+      type: "image",
+      options: {
+        hotspot: true, // Enables user to select a focus area in the Studio UI
+      },
+    },
+  ],
+};
+
 export default profile;
