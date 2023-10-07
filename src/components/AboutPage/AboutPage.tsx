@@ -13,7 +13,7 @@ const AboutPage: FC<AboutPageProps> = ({}) => {
       <div className="flex gap-[50px] justify-center items-center">
         <Image src={Avatar} width={300} height={470} alt="my avatar" />
         <div>
-          <h1 className="text-70 font-bold ">Tu Nguyen (Otis)</h1>
+             <h1 className="text-70 font-bold ">Tu Nguyen (Otis)</h1>
           {/* <h1 className="text-70 font-bold mt-[-20px]">(Otis Nguyen)</h1> */}
           <div className="grid grid-cols-2 gap-x-[70px] mt-[30px] gap-y-[15px] text-lg pl-[50px]">
             {information.map((item, index) => (
