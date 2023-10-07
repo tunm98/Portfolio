@@ -34,7 +34,7 @@ const AboutPage: FC<AboutPageProps> = ({}) => {
                       className="hover:text-yellow"
                     >
                       {item.value}
-                    </a>
+                         </a>
                   </p>
                 ) : (
                   <p>{item.value}</p>
